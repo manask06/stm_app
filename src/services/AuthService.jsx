@@ -5,7 +5,6 @@ const BASE_URL = 'http://localhost:3000/'
 export async function login (loginData) {
   try {
     const result = await axios.post('http://localhost:8000/api/user/token/obtain/', loginData)
-    console.log('TCL: : login -> result', result.data)
     localStorage.setItem('accessToken', result.data.access)
     localStorage.setItem('refreshToken', result.data.refresh)
     window.location = `${BASE_URL}`

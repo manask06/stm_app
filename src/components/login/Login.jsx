@@ -15,7 +15,6 @@ function Login() {
   }
   const handleTextChange = e => {
     console.log(e.target.id)
-    console.log('TCL: : handleTextChange -> values', values)
     setValues({...values, [e.target.id]: e.target.value})
   }
 

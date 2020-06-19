@@ -1,24 +1,34 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './Resume.scss'
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PropTypes from 'prop-types'
 import Checkbox from '@material-ui/core/Checkbox';
 import Dropzone from 'react-dropzone'
-
+import {createResume, getResumes} from '../../services/api'
 const RESUMES = ['resume 1', 'resume 2', 'resume 3', 'resume 4']
 
 function ResumeView({page}) {
-  const [resumesPresent, setResumesStatus] = useState(true)
+  const [resumesPresent, setResumesStatus] = useState(false)
   const [dense, setDense] = useState(false);
   const [checked, setChecked] = React.useState([0]);
   const [files, setFile] = useState([])
+  const [resumes, setResumes] = useState([])
+
+  const [resumeCreated, setResumeCreated] = useState(false)
+
+  useEffect(() => {
+    getResumes().then(resumeList => {
+      if (resumeList && resumeList.data)
+        setResumes(resumeList.data)
+        setResumesStatus(true)
+    })
+  }, [])
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -31,11 +41,20 @@ function ResumeView({page}) {
     }
 
     setChecked(newChecked);
-    console.log('TCL: : handleToggle -> newChecked', newChecked)
   };
 
-  const handleUpload = () => {
-
+  const handleUpload = async e => {
+    e.preventDefault()
+    files.map(async file => {
+      await createResume(file)
+      await setResumeCreated(true)
+      getResumes().then(resumeList => {
+        if (resumeList && resumeList.data)
+          setResumes(resumeList.data)
+          setResumesStatus(true)
+      })
+    })
+   
   }
 
 
@@ -48,9 +67,9 @@ function ResumeView({page}) {
           {
             resumesPresent ? (
               <div className="resumeList">
-                {RESUMES.map(resume => (
+                {resumes.map(resume => (
                   <List dense={dense}>
-                    <ListItem key={resume} classes={{root: 'listItem'}} onClick={handleToggle(resume)}>
+                    <ListItem key={resume.id} classes={{root: 'listItem'}} onClick={handleToggle(resume)}>
                       <ListItemIcon>
                       <Checkbox
                         edge="start"
@@ -61,7 +80,7 @@ function ResumeView({page}) {
                       />
                       </ListItemIcon>
                       <ListItemText
-                        primary={resume}
+                        primary={resume.name}
                       />
                     </ListItem>
                 </List>
@@ -89,6 +108,11 @@ function ResumeView({page}) {
             Upload
           </Button>
           </div>
+          <div className="resume_upload-list">
+                  {
+                    files.map(file => <p>{file.name}</p>)
+                  }
+                </div>
         </div>
       </React.Fragment>
     )

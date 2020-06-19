@@ -9,7 +9,6 @@ import {signup} from '../../services/AuthService'
 function Signup() {
 
   const [values, setValues] = useState({email: '', name: '', password: ''})
-  console.log('TCL: : Signup -> values', values)
 
   const handleSubmit = e => {
     e.preventDefault()

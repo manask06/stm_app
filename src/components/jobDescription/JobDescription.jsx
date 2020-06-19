@@ -14,7 +14,6 @@ function JobDescription() {
       name: document.getElementById('jobDescName').value,
       data: document.getElementById('descriptionData').value,
     }
-    console.log('TCL: : handleSubmit -> obj', obj)
     createJobDescription(obj)
   }
 

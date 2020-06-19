@@ -17,6 +17,10 @@ function Header() {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    localStorage.clear()
+    window.location = "/login"
+  }
   return (
     <div className="header">
       <Button className="logout" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
@@ -29,7 +33,7 @@ function Header() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem className="logout-menu-item" onClick={handleClose}> <ExitToAppOutlinedIcon /> &nbsp; Logout</MenuItem>
+        <MenuItem className="logout-menu-item" onClick={handleLogout}> <ExitToAppOutlinedIcon /> &nbsp; Logout</MenuItem>
       </Menu>
     </div>
   )
