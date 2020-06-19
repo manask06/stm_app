@@ -1,0 +1,36 @@
+.Dashboard_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Dashboard_container-jobdesc {
+  width: 60vw;
+  margin-bottom: 50px;
+  padding: 40px;
+}
+
+.Dashboard_container-resumes {
+  width: 60vw;
+}
+
+
+#select-field {
+  border: none;
+  height: auto;
+}
+
+.Dashboard_resume-h5 {
+  padding: 30px 0 0 0;
+}
+
+.Dashboard_resume-container {
+  display: flex;
+  margin-bottom: 30px;
+  height: 30vh;
+  padding: 20px;
+}
+
+.Dashboard_resume-container .resumes {
+  overflow: scroll;
+}

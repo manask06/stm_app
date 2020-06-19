@@ -1,0 +1,24 @@
+.dashboard-container { height: 100vh; margin: 0; }
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1.1fr 0.9fr 1fr;
+  grid-template-rows: 0.5fr 4.5fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "sidebar header header header" "sidebar container container container" "sidebar footer footer footer";
+}
+
+.sidebar { grid-area: sidebar; }
+
+.header { grid-area: header; }
+
+.footer { grid-area: footer; }
+
+.container { grid-area: container; }
+
+/* For presentation only, no need to copy the code below */
+.dashboard-container * {
+ position: relative;
+}
+
+

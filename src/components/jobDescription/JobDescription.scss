@@ -1,0 +1,73 @@
+.container {
+
+
+}
+
+h3 {
+  margin: 30px 0 50px 0;
+}
+
+.job-container {
+  display: flex;
+  justify-content: space-evenly;
+  .img {
+    width: 40vw;
+    height: 300px;
+  }
+}
+
+.paper {
+  width: 30vw;
+}
+
+form {
+  padding: 10px;
+  margin: 0 auto;
+  width: 80%
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea, select {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formButton {
+  float: right;
+  font-size: 12px !important;
+}
+
+.button-div {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 12px 20px;
+}
+
+.or {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.uploadButton {
+  font-size: 12px !important;
+  color: #538FD3;
+}
+
+.upload {
+  margin-bottom: 20px;
+}

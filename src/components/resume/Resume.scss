@@ -1,0 +1,77 @@
+.resumeContainer {
+  display: flex;
+  justify-content: center;
+}
+
+
+h3 {
+  margin: 30px 0 50px 0;
+}
+.resumes {
+  margin-bottom: 20px;
+}
+.resumes img {
+  height: 25vh;
+  width: 30vw;
+  padding: 35px;
+}
+
+.Resume_paper {
+  display: flex;
+  width: 70vw;
+}
+
+.Resume_upload {
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+  border-left: 1px dotted #c4c7ce;
+  margin-bottom: 0;
+  padding: 30px;
+}
+
+.Resume_upload h4 {
+  margin: 20px 0 40px 0;
+}
+
+.Resume_upload button {
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.resumes .resumeList {
+  height: 40vh;
+  width: 40vw;
+  padding: 30px 180px 30px 30px;
+  overflow: scroll;
+}
+
+.MuiListItem-container {
+  cursor: pointer !important;
+
+  &:hover {
+    background-color: #0000000a;
+  }
+}
+
+.dropzone_container {
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+
+.dropzone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: #eeeeee;
+  border-style: dashed;
+  background-color: #fafafa;
+  color: #bdbdbd;
+  outline: none;
+  transition: border .24s ease-in-out;
+}

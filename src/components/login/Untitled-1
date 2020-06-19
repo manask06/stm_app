@@ -1,0 +1,6 @@
+ jobdescription/jobdescription name, data
+    resume/resume name, data
+
+api/resume/resume/
+resume_1.pdf
+{'name': 'resume_1', 'data': file}
