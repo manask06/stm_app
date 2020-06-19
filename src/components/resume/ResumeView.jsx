@@ -13,10 +13,11 @@ import Dropzone from 'react-dropzone'
 import {createResume, getResumes} from '../../services/api'
 const RESUMES = ['resume 1', 'resume 2', 'resume 3', 'resume 4']
 
-function ResumeView({page}) {
+function ResumeView({page, onResumeSelect}) {
   const [resumesPresent, setResumesStatus] = useState(false)
   const [dense, setDense] = useState(false);
   const [checked, setChecked] = React.useState([0]);
+  console.log('TCL: : ResumeView -> checked', checked)
   const [files, setFile] = useState([])
   const [resumes, setResumes] = useState([])
 
@@ -41,20 +42,19 @@ function ResumeView({page}) {
     }
 
     setChecked(newChecked);
+    onResumeSelect(onResumeSelect)
   };
 
   const handleUpload = async e => {
     e.preventDefault()
     files.map(async file => {
       await createResume(file)
-      await setResumeCreated(true)
       getResumes().then(resumeList => {
         if (resumeList && resumeList.data)
           setResumes(resumeList.data)
           setResumesStatus(true)
       })
     })
-   
   }
 
 
@@ -125,6 +125,7 @@ function ResumeView({page}) {
 
 ResumeView.propTypes = {
   page: PropTypes.string,
+  onResumeSelect: PropTypes.func
 }
 
 export default ResumeView;

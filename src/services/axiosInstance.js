@@ -15,8 +15,8 @@ console.log('TCL: : axiosInstance', axiosInstance)
 axiosInstance.interceptors.response.use(
   response => response,
   error => {
-    console.log('TCL: : error', error)
     const originalRequest = error.config;
+    console.log('TCL: : error.config', error.config)
 
     if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
         const refresh_token = localStorage.getItem('refreshToken');
