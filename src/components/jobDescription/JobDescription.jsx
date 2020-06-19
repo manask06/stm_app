@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon'
+import DescriptionIcon from '@material-ui/icons/Description';
 import ListItemText from '@material-ui/core/ListItemText';
 function JobDescription() {
   const [dense, setDense] = useState(false);
@@ -49,6 +50,7 @@ function JobDescription() {
                   <List dense={dense}>
                     <ListItem key={resume.id} classes={{root: 'listItem'}}>
                       <ListItemIcon>
+                        <DescriptionIcon/>
                       </ListItemIcon>
                       <ListItemText
                         primary={resume.name}
@@ -60,8 +62,8 @@ function JobDescription() {
             ) : (<img width="400" height="300" alt="job-list" src={ require('../../todolist.svg') } />)
           }
         <Paper classes={{root: 'paper'}}>
-          <h4>New Job Description</h4>
-          <form  className="form">
+          <h4 className="JobDescription_h4">New Job Description</h4>
+          <form  className="JobDescription_form">
             <input type="text" id="jobDescName" name="firstname" placeholder="Name" />
             <textarea rows="4" id="descriptionData" name="description" placeholder="Job description........" />
             <Button onClick={handleSubmit} classes={{root: 'formButton'}} variant="contained" color="primary">

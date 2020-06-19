@@ -38,3 +38,10 @@
 .Dashboard_evaluate {
   margin-top: 14px;
 }
+
+.Dashboard_backarrow {
+  display: flex;
+  &:hover {
+    cursor: pointer;
+  }
+}

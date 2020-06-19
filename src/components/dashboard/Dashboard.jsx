@@ -6,14 +6,25 @@ import TextField from '@material-ui/core/TextField'
 import Resume from '../resume/ResumeView'
 import {getJobDescriptions, evaluate} from '../../services/api'
 import Button from '@material-ui/core/Button';
+import DescriptionIcon from '@material-ui/icons/Description';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 function Dashboard() {
 
   const [jobDesc, setJobDesc] = useState([])
+  console.log('TCL: : Dashboard -> jobDesc', jobDesc)
   const [resultsAnalysed, setresultsAnalysed] = useState(false)
-  const selectedResume = resumes => {
-    console.log('TCL: : Dashboard -> resumes', resumes)
+  const [evaluatedResults, setResults] = useState(['resue 1, ', 'rewda', 'asdfasd'])
 
+  const [resumesSlected, setResumesSlected] = useState([])
+  const [jobDescSelected, setJobDescArray] = useState([])
+
+  const selectedResume = resumes => {
+    setResumesSlected(resumes)
   }
   console.log('TCL: : Dashboard -> jobDesc', jobDesc)
 
@@ -24,10 +35,12 @@ function Dashboard() {
     })
   }, [])
 
-  const handleEvaluation = () => {
-
-    // const selectedJobDesc = document.getElementById('selectJobDescription')
-    evaluate({jobdescription: ['1'], resumes: ['13','14', '16']})
+  const handleEvaluation = async () => {
+    const resultsEvaluated = await evaluate({jobdescription: jobDescSelected, resumes: resumesSlected})
+    if (resultsEvaluated && (resultsEvaluated.data.length !== 0)) {
+      setresultsAnalysed(true)
+      setResults(resultsEvaluated.data)
+    }
   }
 
   const renderEvaluateContainer = () => {
@@ -41,7 +54,7 @@ function Dashboard() {
               id="selectJobDescription"
               options={jobDesc}
               getOptionLabel={(option) => option.name}
-              onInputChange={(e, value) => console.log("=========> " ,value)}
+              onChange={(e, option) => setJobDescArray([option.id])}
               renderInput={(params) => <TextField {...params} label="Select Job Description" variant="outlined" />}
             />
             <div className="Dashboard_evaluate">
@@ -66,19 +79,21 @@ function Dashboard() {
         <h3>Analyzed Results</h3>
         <div className="Dashboard_container">
           <Paper classes={{root: 'Dashboard_container-jobdesc'}}>
-            <h5>Job Descriptions</h5>
-            <Autocomplete
-              id="selectJobDescription"
-              options={jobDesc}
-              getOptionLabel={(option) => option.name}
-              onInputChange={(e, value) => console.log("=========> " ,value)}
-              renderInput={(params) => <TextField {...params} label="Select Job Description" variant="outlined" />}
-            />
-            <div className="Dashboard_evaluate">
-              <Button classes={{root: 'Dashboard_evaluate'}} onClick={handleEvaluation} variant="contained" color="primary">
-                Evaluate
-              </Button>
+            <div onClick={() => setresultsAnalysed(false)} className="Dashboard_backarrow">
+              <ArrowBackIosIcon/> Back
             </div>
+            {evaluatedResults.map((value, i) => (
+                  <List >
+                    <ListItem key={`key-${i}`} classes={{root: 'listItem'}} >
+                      <ListItemIcon>
+                        <DescriptionIcon/>
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={value}
+                      />
+                    </ListItem>
+                </List>
+                ))}
           </Paper>
         </div>
         </React.Fragment>)

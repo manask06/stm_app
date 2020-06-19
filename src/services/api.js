@@ -55,7 +55,7 @@ export async function evaluate(evalData) {
   console.log('TCL: : evaluate -> evalData', evalData)
   try {
     const result = await axiosInstance.post(`/evaluate/evaluate`, evalData)
-    console.log('TCL: : evaluate -> result', result)
+    return result.data
   } catch (error) {
     console.log('TCL: : evaluate -> error', error)
   }

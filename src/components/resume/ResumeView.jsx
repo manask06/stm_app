@@ -42,7 +42,8 @@ function ResumeView({page, onResumeSelect}) {
     }
 
     setChecked(newChecked);
-    onResumeSelect(onResumeSelect)
+    const selectedCheck = newChecked.map(value => (value !== 0) && value.id).filter(Boolean)
+    onResumeSelect(selectedCheck)
   };
 
   const handleUpload = async e => {
@@ -55,6 +56,7 @@ function ResumeView({page, onResumeSelect}) {
           setResumesStatus(true)
       })
     })
+    setFile([])
   }
 
 
@@ -109,10 +111,10 @@ function ResumeView({page, onResumeSelect}) {
           </Button>
           </div>
           <div className="resume_upload-list">
-                  {
-                    files.map(file => <p>{file.name}</p>)
-                  }
-                </div>
+              {
+                files.map(file => <p>{file.name}</p>)
+              }
+          </div>
         </div>
       </React.Fragment>
     )
